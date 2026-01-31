@@ -1,0 +1,10 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+  <h2>Delete Project</h2>
+  <p>Delete "<strong>{{ object.project_name }}</strong>"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Yes, delete</button>
+    <a class="btn btn-outline-secondary" href="{% url 'tracker:list' %}">Cancel</a>
+  </form>
+{% endblock %}

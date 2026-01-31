@@ -1,0 +1,95 @@
+{% extends 'tracker/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h3 class="mb-4">{% if create %}Add Project{% else %}Edit Project{% endif %}</h3>
+
+<form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+  {% csrf_token %}
+
+  <!-- Project Name -->
+  <div class="mb-3">
+    <label class="form-label fw-bold">Project Name</label>
+    {{ form.project_name|add_class:"form-control" }}
+  </div>
+
+  <!-- Brief -->
+  <div class="mb-3">
+    <label class="form-label fw-bold">Project Brief</label>
+    {{ form.brief|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-bold">Miscellaneous Reason</label>
+    {{ form.miscellaneous_reason|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-bold">Marked Reason</label>
+    {{ form.marked_reason|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-bold">Marked By (Person Name)</label>
+    {{ form.marked_by|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-bold">Attach Document</label>
+    {{ form.attachment|add_class:"form-control" }}
+  </div>
+
+  <!-- Status + Dates -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label class="form-label fw-bold">Status</label>
+      {{ form.status|add_class:"form-select" }}
+    </div>
+    <div class="col-md-4">
+      <label class="form-label fw-bold">Start Date</label>
+      {{ form.start_date|add_class:"form-control" }}
+    </div>
+    <div class="col-md-4">
+      <label class="form-label fw-bold">End Date</label>
+      {{ form.end_date|add_class:"form-control" }}
+    </div>
+  </div>
+
+  <!-- Aircraft -->
+  <div class="mb-3">
+    <label class="form-label fw-bold">Aircraft / System</label>
+    {{ form.aircraft|add_class:"form-control" }}
+  </div>
+
+  <!-- Numeric fields in one row -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <label class="form-label fw-bold">No. of Meetings</label>
+      {{ form.no_meetings|add_class:"form-control text-center" }}
+    </div>
+    <div class="col-md-3">
+      <label class="form-label fw-bold">IOM / TM</label>
+      {{ form.iom_tm|add_class:"form-control text-center" }}
+    </div>
+    <div class="col-md-3">
+      <label class="form-label fw-bold">No. of Sorties</label>
+      {{ form.no_sorties|add_class:"form-control text-center" }}
+    </div>
+    <div class="col-md-3">
+      <label class="form-label fw-bold">Trials</label>
+      {{ form.trials|add_class:"form-control text-center" }}
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="d-flex gap-2">
+    <button class="btn btn-primary px-4" type="submit">
+      {% if create %}Add Project{% else %}Save Changes{% endif %}
+    </button>
+    <a class="btn btn-outline-secondary px-4" href="{% url 'tracker:list' %}">
+      Cancel
+    </a>
+  </div>
+
+</form>
+{% endblock %}
